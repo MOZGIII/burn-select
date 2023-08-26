@@ -1,0 +1,23 @@
+[package]
+name = "burn-select"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+enum-kinds = "0.5"
+serde = { version = "1", features = ["derive"], optional = true }
+clap = { version = "4", features = ["derive"], optional = true }
+burn-wgpu = { version = "0.9", optional = true }
+burn-ndarray = { version = "0.9", optional = true }
+burn-tch = { version = "0.9", optional = true }
+burn-tensor = "0.9"
+
+[features]
+default = ["clap", "serde", "all-backends"]
+all-backends = ["burn-tch", "burn-ndarray", "burn-wgpu"]
+
+[patch.crates-io]
+burn-tch = { path = "../burn/burn-tch" }
+burn-ndarray = { path = "../burn/burn-ndarray" }
+burn-wgpu = { path = "../burn/burn-wgpu" }
+burn-tensor = { path = "../burn/burn-tensor" }
